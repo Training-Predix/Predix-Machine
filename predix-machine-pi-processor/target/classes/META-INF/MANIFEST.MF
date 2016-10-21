@@ -1,0 +1,24 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1475085682509
+Build-Jdk: 1.8.0_51
+Built-By: predix
+Bundle-Classpath: .,pi4j-core-1.0.jar,GrovePi-spec-0.1.0-SNAPSHOT.jar,Gr
+ ovePi-dio-0.1.0-SNAPSHOT.jar,Pi-dio-0.1.0-SNAPSHOT.jar,Pi-pi4j-0.1.0-SN
+ APSHOT.jar,Pi-spec-0.1.0-SNAPSHOT.jar,GrovePi-pi4j-0.1.0-SNAPSHOT.jar
+Bundle-ManifestVersion: 2
+Bundle-Name: Predix Machine Machine Processor
+Bundle-SymbolicName: com.ge.predix.solsvc.predix-machine-pi-processor
+Bundle-Version: 1.0
+Created-By: Apache Maven Bundle Plugin
+Import-Package: org.slf4j;version="[1.7,2)";provider=paxlogging,org.osgi
+ .service.component;version="[1.2,2)",com.ge.dspmicro.hoover.api.spillwa
+ y;version="[1.1,2.0)",com.ge.dspmicro.hoover.api.processor;version="[1.
+ 1,2.0)",com.ge.dspmicro.machinegateway.types;version="[1.3,2.0)",aQute.
+ bnd.annotation.metatype;version="[1.45,2)",org.osgi.framework;version="
+ [1.7,2)",org.osgi.service.cm;version="[1.5,2)",org.codehaus.jackson.map
+ ;version="[1.9,2)",org.codehaus.jackson.type;version="[1.9,2)",com.ge.d
+ spmicro.machinegateway.api;version="[1.3,2.0)",com.ge.dspmicro.machineg
+ ateway.api.adapter;version="[1.3,2.0)"
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Service-Component: OSGI-INF/com.ge.dspmicro.sample.hoover.processor.xml
+Tool: Bnd-3.2.0.201605172007
