@@ -12,7 +12,6 @@ package com.ge.predix.solsvc.workshop.adapter;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.ByteBuffer;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -32,10 +31,10 @@ import org.osgi.service.component.ComponentContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.ge.dspmicro.machinegateway.api.adapter.AbstractSubscriptionMachineAdapter;
 import com.ge.dspmicro.machinegateway.api.adapter.IDataSubscription;
 import com.ge.dspmicro.machinegateway.api.adapter.IDataSubscriptionListener;
 import com.ge.dspmicro.machinegateway.api.adapter.IMachineAdapter;
-import com.ge.dspmicro.machinegateway.api.adapter.ISubscriptionAdapterListener;
 import com.ge.dspmicro.machinegateway.api.adapter.ISubscriptionMachineAdapter;
 import com.ge.dspmicro.machinegateway.api.adapter.MachineAdapterException;
 import com.ge.dspmicro.machinegateway.api.adapter.MachineAdapterInfo;
@@ -60,13 +59,12 @@ import aQute.bnd.annotation.metatype.Meta;
  * 
  * @author Predix Machine Sample
  */
-@SuppressWarnings("javadoc")
+@SuppressWarnings({ "javadoc", "deprecation" })
 @Component(name = RaspberryPISubscriptionAdapter.SERVICE_PID, provide =
 {
         ISubscriptionMachineAdapter.class, IMachineAdapter.class
 }, designate = RaspberryPISubscriptionAdapter.Config.class, configurationPolicy = ConfigurationPolicy.require)
-public class RaspberryPISubscriptionAdapter
-        implements ISubscriptionMachineAdapter
+public class RaspberryPISubscriptionAdapter extends AbstractSubscriptionMachineAdapter
 {
     // Meta mapping for configuration properties
     @Meta.OCD(name = "%component.name", localization = "OSGI-INF/l10n/bundle")
@@ -493,17 +491,5 @@ public class RaspberryPISubscriptionAdapter
             this.dataValueCache.put(value.getNodeId(), value);
         }
     }
-
-	@Override
-	public void addSubscriptionAdapterListener(ISubscriptionAdapterListener arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void removeSubscriptionAdapterListener(ISubscriptionAdapterListener arg0) {
-		// TODO Auto-generated method stub
-		
-	}
 
 }

@@ -25,6 +25,7 @@ import com.ge.dspmicro.machinegateway.types.PDataValue;
  * 
  * @author Predix Machine Sample
  */
+@SuppressWarnings("deprecation")
 public class WorkshopDataSubscription implements Runnable, IDataSubscription {
 	private UUID uuid;
 	private String name;
@@ -160,5 +161,11 @@ public class WorkshopDataSubscription implements Runnable, IDataSubscription {
 
 			// Do other clean up if needed...
 		}
+	}
+
+	@Override
+	public long getUpdateIntervalMillis() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }
