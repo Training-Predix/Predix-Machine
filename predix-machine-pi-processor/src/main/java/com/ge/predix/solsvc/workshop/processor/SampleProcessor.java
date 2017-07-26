@@ -11,6 +11,7 @@
 package com.ge.predix.solsvc.workshop.processor;
 
 import java.util.List;
+import java.util.Map;
 
 import org.osgi.service.component.ComponentContext;
 import org.slf4j.Logger;
@@ -26,6 +27,7 @@ import com.ge.dspmicro.hoover.api.spillway.ITransferData;
 import com.ge.dspmicro.machinegateway.types.ITransferable;
 import com.ge.dspmicro.machinegateway.types.PDataValue;
 import com.ge.dspmicro.machinegateway.types.PQuality;
+import com.ge.predixmachine.datamodel.datacomm.EdgeDataList;
 
 /**
  * This class provides a Processor implementation which will process the data as per configuration on the spillway.
@@ -46,6 +48,7 @@ public class SampleProcessor
     protected static Logger   _logger = LoggerFactory.getLogger(SampleProcessor.class);
     
     public static final String printData = "printData";
+    public static final String processAll = "processAll";
     
     PQuality quality;
     
@@ -78,11 +81,24 @@ public class SampleProcessor
     public void processValues(String processType, List<ITransferable> values, ITransferData transferData)
             throws ProcessorException
     {   	
-    	for (ITransferable value : values)
-		{
-			if (value instanceof PDataValue)
-			{
-				_logger.info("IN Value:" + value.toString() );
+    	this.processValues(processType, null, values, transferData);
+    	
+    }
+
+
+	@SuppressWarnings("deprecation")
+	@Override
+	public void processValues(String processType, Map<String, String> properties, List<ITransferable> values, ITransferData transferData)
+			throws ProcessorException 
+	{
+		switch (processType) {
+		case processAll: 
+			_logger.info("Processing batch of type : "+ processType);
+			
+			for (ITransferable value : values) {
+			  if (value instanceof PDataValue)
+			  {
+//				_logger.info("IN Value:" + value.toString() );
 				
 				if (((PDataValue) value).getNodeName().contains("Light"))
 				{
@@ -101,15 +117,28 @@ public class SampleProcessor
 						((PDataValue) value).getEnvelope().setValue(temp);
 					}
 
-			} else {
+			  } else {
 		    	_logger.info("ERROR in PDataValue" +values.toString()); //$NON-NLS-1$ //$NON-NLS-2$
+			  }
 			}
-				
-		}
+			break;
+		default:	// no process type defined
+			_logger.info("No process type defined in Hoover Spillway Config file");
+			_logger.info("Analytics not implemented");
+			break;
+		} // end switch statement
+		
     	_logger.info("TRANSFER values :" +values.toString()); //$NON-NLS-1$ //$NON-NLS-2$
-    	transferData.transferData(values);
-    	
-    }
+    	transferData.transferData(values, null);		
+	}
+
+
+	@Override
+	public void processValues(String arg0, Map<String, String> arg1, EdgeDataList arg2, ITransferData arg3)
+			throws ProcessorException {
+		// TODO Auto-generated method stub
+		
+	}
    
 }
 

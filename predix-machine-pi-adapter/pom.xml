@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.ge.predix.solsvc</groupId>
 	<artifactId>predix-machine-pi-adapter</artifactId>
-	<version>1.0</version>
+	<version>17.1.0</version>
 	<packaging>bundle</packaging>
 	<name>Predix Machine Subscription Machine Adapter</name>
 	<properties>
@@ -263,13 +263,7 @@
 			<version>${dspmicro.device-common.project.version}</version>
 			<scope>compile</scope>
 		</dependency>
-<!-- 	<dependency>
-            <groupId>com.ge.dspmicro</groupId>
-            <artifactId>hoover-api</artifactId>
-            <version>${dspmicro.version}</version>
-            <scope>compile</scope>
-        </dependency>
---> 
+
 		<!-- DS Annotation Dependency -->
         <dependency>
             <groupId>biz.aQute.bnd</groupId>
@@ -363,9 +357,6 @@
 							org.osgi.service.cm;version=${import.org.osgi.service.cm},
 							org.codehaus.jackson.map;version=${import.org.codehaus.jackson.map},
 							org.codehaus.jackson.type;version=${import.org.codehaus.jackson.type},
-<!-- 						com.ge.dspmicro.hoover.api.spillway;version=${import.com.ge.dspmicro.hoover.api},
-                            com.ge.dspmicro.hoover.api.processor;version=${import.com.ge.dspmicro.hoover.api},
--->
                             com.ge.dspmicro.machinegateway.api;version=${import.com.ge.dspmicro.machinegateway.api},
                             com.ge.dspmicro.machinegateway.api.adapter;version=${import.com.ge.dspmicro.machinegateway.api},
                             com.ge.dspmicro.machinegateway.types;version=${import.com.ge.dspmicro.machinegateway.api}
